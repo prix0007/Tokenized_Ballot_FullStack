@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ContractService } from './contract.service';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { UpdateContractDto } from './dto/update-contract.dto';
@@ -22,8 +30,18 @@ export class ContractController {
     return this.contractService.findOne(+id);
   }
 
+  @Post('/createDefault')
+  async createDefault() {
+    await this.contractService.createDefaultERC20VotableTokenContract();
+    await this.contractService.createDefaultTokenizedBallotContract();
+    return;
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateContractDto: UpdateContractDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateContractDto: UpdateContractDto,
+  ) {
     return this.contractService.update(+id, updateContractDto);
   }
 

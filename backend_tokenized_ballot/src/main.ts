@@ -11,9 +11,6 @@ async function bootstrap() {
       'The Backend to Interact with Tokenized Ballot and State Management',
     )
     .setVersion('1.0')
-    .addTag('erc20')
-    .addTag('ballot voting')
-    .addTag('blockchain')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinTable } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinTable,
+} from 'typeorm';
 
 import { Claim } from 'src/claims/entities/claim.entity';
 
@@ -21,5 +27,5 @@ export class User {
 
   @OneToMany(() => Claim, (claim) => claim.user)
   @JoinTable()
-  claims: Claim
+  claims: Claim;
 }

@@ -15,12 +15,12 @@ export class Claim {
   @Column({ type: 'timestamp', default: () => 'now()' })
   created: Date;
 
-  @Column({default: 0})
+  @Column({ default: 0 })
   amount: number;
 
   @Column()
   secret_hash: string;
 
   @ManyToOne(() => User, (user) => user.claims)
-  user: User
+  user: User;
 }

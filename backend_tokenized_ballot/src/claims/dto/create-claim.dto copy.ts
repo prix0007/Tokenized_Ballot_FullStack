@@ -1,4 +1,4 @@
 export class ClaimDto {
-    claimId: number;
-    secret: string;
+  claimId: number;
+  secret: string;
 }

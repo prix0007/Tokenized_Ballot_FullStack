@@ -1,7 +1,7 @@
 {
   "name": "backend_tokenized_ballot",
   "version": "0.0.1",
-  "description": "",
+  "description": "Backend Server to the Tokenized ballot Service.",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
