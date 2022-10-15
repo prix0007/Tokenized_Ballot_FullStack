@@ -1,5 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ethers, Contract as EContract, Wallet } from 'ethers';
 import { Repository, UpdateResult } from 'typeorm';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { UpdateContractDto } from './dto/update-contract.dto';
@@ -7,6 +8,18 @@ import { Contract } from './entities/contract.entity';
 
 import * as contractDataERC20 from './ERC20VotableToken.json';
 import * as contractTokenizedBallot from './TokenizedBallot.json';
+
+export function resolveProviderByNetwork(network: string) {
+  switch (network) {
+    case 'maticmum':
+      return ethers.getDefaultProvider('maticmum');
+    case 'goerli':
+      return ethers.getDefaultProvider('goerli');
+    default:
+      return ethers.getDefaultProvider('goerli');
+  }
+}
+
 @Injectable()
 export class ContractService {
   constructor(
@@ -94,6 +107,32 @@ export class ContractService {
     contractOld.address = address;
 
     return this.contractsRepository.update(id, contractOld);
+  }
+
+  async getContractInstanceById(id: number): Promise<EContract> {
+    const contract = await this.contractsRepository.findOneBy({ id: id });
+    if (!contract) {
+      throw new HttpException('Contract is not found.', 400);
+    }
+
+    const { abi, address, network } = contract;
+
+    const provider = resolveProviderByNetwork(network);
+    const contractInstance = new ethers.Contract(address, abi, provider);
+    return contractInstance;
+  }
+
+  async getSignerViaNetwork(network): Promise<Wallet> {
+    const provider = resolveProviderByNetwork(network);
+
+    const privKey = process.env.PRIVATE_KEY;
+    if(!privKey) {
+      throw new HttpException("Custodial Wallet not Setup.!!", 500);
+    }
+    const privateKey = `0x${privKey}`;
+    const signer = new Wallet(ethers.utils.hexlify(privateKey), provider);
+    return signer;
+
   }
 
   remove(id: number) {

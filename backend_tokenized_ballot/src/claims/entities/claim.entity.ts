@@ -21,6 +21,12 @@ export class Claim {
   @Column()
   secret_hash: string;
 
+  @Column({ nullable: true })
+  claimedAt: Date;
+
+  @Column({ nullable: true })
+  txHash: string;
+
   @ManyToOne(() => User, (user) => user.claims)
   user: User;
 }
