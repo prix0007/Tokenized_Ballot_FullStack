@@ -74,9 +74,9 @@ export class UsersService {
       throw new HttpException('`claimId` is not supplied', 400);
     }
 
-    const secretSupplied = claimDto.secret;
-    if (!secretSupplied) {
-      throw new HttpException('`secret` is not Supplied!!', 400);
+    const signatureSupplied = claimDto.signature;
+    if (!signatureSupplied) {
+      throw new HttpException('`signature` is not Supplied!!', 400);
     }
 
     const claim = await this.claimsService.findOne(claimId);
@@ -90,9 +90,9 @@ export class UsersService {
       );
     }
 
-    const suppliedSecretHash = ethers.utils.hashMessage(secretSupplied.trim());
+    const signingSignatureAddress = ethers.utils.verifyMessage(claim.secret_hash, signatureSupplied);
 
-    if (suppliedSecretHash === claim.secret_hash) {
+    if (signingSignatureAddress === claim.address) {
       // Process the Claim and Update the Record.
 
       const updatedClaim = claim;
