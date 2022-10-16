@@ -1,11 +1,9 @@
 <div>
-  <div class="table-title">
-    <div class="row">
-      <div class="col-sm-8 float-left">
-        <h2> Users</h2>
-      </div>
-      <div class="col-sm-4">
-        <button type="button" class="btn btn-primary" routerLink="/create-user">Create new user</button>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Users</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group mr-2">
+        <button type="button" class="btn btn-sm btn-primary" routerLink="/create-user">Create new user</button>
       </div>
     </div>
   </div>
@@ -34,7 +32,10 @@
         <td>{{user.claimsCount}}</td>
         <td>{{user.isActive}}</td>
         <td>
-          <!-- <button type="button" (click)="apiService.deleteUser(user.id)">Remove</button> -->
+          <button type="button" class="btn btn-outline-danger" (click)="deleteUser(user.id)">
+            <i class="bi bi-trash"></i>
+            Remove
+          </button>
         </td>
       </tr>
     </tbody>
