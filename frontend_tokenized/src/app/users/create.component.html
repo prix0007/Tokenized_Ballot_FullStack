@@ -1,0 +1,22 @@
+<div>
+  <div class="table-title">
+    <div class="row">
+      <div class="col-sm-8 float-left">
+        <h2> Create User</h2>
+      </div>
+    </div>
+    <div>
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()" novalidate>
+        <div class="form-group">
+          <label >First Name</label>
+          <input type="text" formControlName="firstName" class="form-control" maxlength="20">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control" maxlength="30">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
