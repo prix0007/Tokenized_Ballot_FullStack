@@ -1,0 +1,30 @@
+<div>
+  <div class="table-title">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+      <h1 class="h2">Create new user</h1>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="needs-validation">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" formControlName="firstName" class="form-control" maxlength="20">
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+            <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" formControlName="lastName" class="form-control" maxlength="30">
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </form>
+      <br />
+    </div>
+  </div>
+</div>
