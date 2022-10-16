@@ -9,11 +9,11 @@ services:
         - NODE_ENV=production
     environment:
       - PORT=3000
-      - DB_HOST=postgres
+      - HOST=postgres
       - DB_PORT=5432
-      - DB_USER=postgres
+      - DB_USERNAME=postgres
       - DB_NAME=ballot
-      - DB_PW=${DB_PASS:-postgres}
+      - DB_PASSWORD=${DB_PASS:-postgres}
     ports:
       - 3000:3000
     depends_on:
