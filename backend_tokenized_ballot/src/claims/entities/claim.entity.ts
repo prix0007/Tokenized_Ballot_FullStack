@@ -15,8 +15,10 @@ export class Claim {
   @Column({ type: 'timestamp', default: () => 'now()' })
   created: Date;
 
-  @Column({ default: 0 })
-  amount: number;
+  @Column({
+    default: '0',
+  })
+  amount: String;
 
   @Column()
   secret_hash: string;

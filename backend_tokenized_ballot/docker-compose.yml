@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    environment:
+      - PORT=3000
+      - HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_NAME=ballot
+      - DB_PASSWORD=${DB_PASS:-postgres}
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    links:
+      - postgres:postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=ballot
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASS:-postgres}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

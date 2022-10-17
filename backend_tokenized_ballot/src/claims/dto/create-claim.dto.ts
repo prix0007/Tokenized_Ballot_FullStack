@@ -1,6 +1,8 @@
+import { BigNumber } from 'ethers';
+
 export class CreateClaimDto {
   userId: number;
   address: string;
-  amount: number;
+  amount: string;
   secret: string;
 }
