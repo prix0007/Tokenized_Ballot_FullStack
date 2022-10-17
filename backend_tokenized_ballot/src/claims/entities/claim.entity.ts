@@ -31,7 +31,7 @@ export class Claim {
   created: Date;
 
   @Column({
-    type: 'string',
+    type: 'varchar',
     default: '0',
     transformer: new ColumnBigNumberTransformer(),
   })
