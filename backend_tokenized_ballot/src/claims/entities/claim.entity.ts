@@ -1,3 +1,4 @@
+import { BigNumber } from 'ethers';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -16,7 +17,7 @@ export class Claim {
   created: Date;
 
   @Column({ default: 0 })
-  amount: number;
+  amount: BigNumber;
 
   @Column()
   secret_hash: string;
