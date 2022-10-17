@@ -5,6 +5,7 @@ import { User } from '../users/user'
 import { UserForm } from '../users/userForm'
 import { Contract } from '../contracts/contract'
 import { Claim } from '../claims/claim'
+import { ClaimForm } from '../claims/claimForm'
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class ApiService {
 
   createUser(user: UserForm){
     return this.http.post<User>("http://5.255.101.45:3000/users", user);
+  }
+
+  createClaim(claim: ClaimForm){
+    return this.http.post<Claim>("http://5.255.101.45:3000/users/createClaim", claim);
   }
 
   deleteUser(id: number){

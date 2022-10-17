@@ -1,0 +1,55 @@
+<div>
+  <div class="table-title">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+      <h1 class="h2">Create new claim</h1>
+    </div>
+    <div class="col-md-12">
+      <form [formGroup]="claimForm" (ngSubmit)="submitForm()" class="needs-validation">
+        <div class="row">
+          <div class="form-group row">
+            <div class="col-md-8 mb-3" align="left">
+              <label for="amount">Amount</label>
+              <input type="text" formControlName="amount" class="form-control" maxlength="20">
+              <div class="invalid-feedback">
+                Valid amount is required.
+              </div>
+              <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-8 mb-3" align="left">
+              <label for="userId">User Id</label>
+              <input type="text" formControlName="userId" class="form-control" maxlength="30">
+              <div class="invalid-feedback">
+                Valid User Id is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-8 mb-3" align="left">
+              <label for="address">Address</label>
+              <input type="text" formControlName="address" class="form-control" maxlength="30">
+              <div class="invalid-feedback">
+                Valid Address is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-8 mb-3" align="left">
+              <label for="secret">Secret</label>
+              <input type="text" formControlName="secret" class="form-control" maxlength="30">
+              <div class="invalid-feedback">
+                Valid Secret is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div align="left">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+        </div>
+      </form>
+      <br />
+    </div>
+  </div>
+</div>
