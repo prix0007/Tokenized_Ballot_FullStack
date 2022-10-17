@@ -63,8 +63,12 @@ export class ContractsComponent implements OnInit {
       //  Loading All Abis on load
       if (parseAbiData.length > 0) {
         this.loadAbis(parseAbiData);
+        this.loadERC20TokenContract();
+        this.getTotalSupply();
+        this.loadTokenziedOwner();
       }
     });
+  
   }
 
   loadAbis(parseAbiData: Contract[]) {
