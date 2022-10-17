@@ -1,20 +1,5 @@
-import { BigNumber } from 'ethers';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-
-export class ColumnBigNumberTransformer {
-  public to(data: BigNumber): string {
-    return data.toString();
-  }
-
-  public from(data: string): BigNumber {
-    // output value, you can use Number, parseFloat variations
-    // also you can add nullable condition:
-    // if (!Boolean(data)) return 0;
-
-    return BigNumber.from(data);
-  }
-}
 
 @Entity()
 export class Claim {
@@ -31,11 +16,9 @@ export class Claim {
   created: Date;
 
   @Column({
-    type: 'varchar',
     default: '0',
-    transformer: new ColumnBigNumberTransformer(),
   })
-  amount: BigNumber;
+  amount: String;
 
   @Column()
   secret_hash: string;
