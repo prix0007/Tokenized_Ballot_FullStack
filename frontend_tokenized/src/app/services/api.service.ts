@@ -38,4 +38,9 @@ export class ApiService {
   deleteUser(id: number){
     return this.http.delete<User>(`http://5.255.101.45:3000/users/${id}`);
   }
+
+  claimToken(id: number, signature: string){
+    const body = { claimId: id, signature: signature };
+    return this.http.post<User>(`http://5.255.101.45:3000/users/claim`, body);
+  }
 }
