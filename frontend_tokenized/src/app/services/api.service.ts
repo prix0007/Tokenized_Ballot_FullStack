@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getContracts() {
-    return this.http.get<Contract[]>(this.formEndPoint('contract'));
+    return this.http.get<Contract[]>(this.formEndPoint('/contract'));
   }
 
   getUsers() {
