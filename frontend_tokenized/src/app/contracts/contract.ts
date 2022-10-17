@@ -3,4 +3,5 @@ export interface Contract {
   contractName: string;
   address: string;
   network: string;
+  abi: string;
 }

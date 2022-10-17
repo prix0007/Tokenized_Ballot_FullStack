@@ -1,46 +1,55 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../users/user'
-import { UserForm } from '../users/userForm'
-import { Contract } from '../contracts/contract'
-import { Claim } from '../claims/claim'
-import { ClaimForm } from '../claims/claimForm'
+import { User } from '../users/user';
+import { UserForm } from '../users/userForm';
+import { Contract } from '../contracts/contract';
+import { Claim } from '../claims/claim';
+import { ClaimForm } from '../claims/claimForm';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ApiService {
-  constructor( private http: HttpClient ) {
+  BASE_API: string;
+
+  constructor(private http: HttpClient) {
+    this.BASE_API = 'http://5.255.101.45:3000';
   }
 
-  getClaims(){
-    return this.http.get<Claim[]>("http://5.255.101.45:3000/claims");
+  private formEndPoint(endpoint: string): string {
+    return this.BASE_API + endpoint;
   }
 
-  getContracts(){
-    return this.http.get<Contract[]>("http://5.255.101.45:3000/contract");
+  getClaims() {
+    return this.http.get<Claim[]>(this.formEndPoint('/claims'));
   }
 
-  getUsers(){
-    return this.http.get<User[]>("http://5.255.101.45:3000/users");
+  getContracts() {
+    return this.http.get<Contract[]>(this.formEndPoint('contract'));
   }
 
-  createUser(user: UserForm){
-    return this.http.post<User>("http://5.255.101.45:3000/users", user);
+  getUsers() {
+    return this.http.get<User[]>(this.formEndPoint('/users'));
   }
 
-  createClaim(claim: ClaimForm){
-    return this.http.post<Claim>("http://5.255.101.45:3000/users/createClaim", claim);
+  createUser(user: UserForm) {
+    return this.http.post<User>(this.formEndPoint('/users'), user);
   }
 
-  deleteUser(id: number){
-    return this.http.delete<User>(`http://5.255.101.45:3000/users/${id}`);
+  createClaim(claim: ClaimForm) {
+    return this.http.post<Claim>(
+      this.formEndPoint('/users/createClaim'),
+      claim
+    );
   }
 
-  claimToken(id: number, signature: string){
+  deleteUser(id: number) {
+    return this.http.delete<User>(this.formEndPoint(`/users/${id}`));
+  }
+
+  claimToken(id: number, signature: string) {
     const body = { claimId: id, signature: signature };
-    return this.http.post<User>(`http://5.255.101.45:3000/users/claim`, body);
+    return this.http.post<User>(this.formEndPoint(`/users/claim`), body);
   }
 }
