@@ -20,6 +20,7 @@
         <th scope="col">Address</th>
         <th scope="col">Amount</th>
         <th scope="col">Claimed</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +33,16 @@
         </td>
         <td>{{claim.amount}}</td>
         <td>{{claim.claimed}}</td>
+        <td>
+          <div *ngIf="claim.address === userAddress()">
+            <label for="address">Secret</label>
+            <input #secret type="text" placeholder="Secret" />
+            <button type="button" class="btn btn-outline-danger" (click)="claimToken(claim.id, secret.value)">
+              <i class="bi bi-trash"></i>
+              Claim
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

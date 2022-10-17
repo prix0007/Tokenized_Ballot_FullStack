@@ -1,14 +1,22 @@
 <div>
   <div class="form-group row">
     <div class="col-md-8 mb-3" align="left">
-      <label for="address">Private Key</label>
-      <input #secret type="text" placeholder="Secret" />
-      <div class="invalid-feedback">
-        Valid Address is required.
-      </div>
+      <label for="address">Your Address: {{address()}}</label>
     </div>
   </div>
-  <div align="left">
-    <button class="btn btn-primary" type="submit" (click)="connect(secret.value)" >Connect</button>
-  </div>
+  <form *ngIf="notConnected()">
+    <div class="form-group row">
+      <div class="col-md-8 mb-3" align="left">
+        <label for="address">Private Key</label>
+        <input #secret type="text" placeholder="Secret" />
+        <div class="invalid-feedback">
+          Valid Address is required.
+        </div>
+      </div>
+    </div>
+    <div align="left">
+      <button class="btn btn-primary" type="submit" (click)="connect(secret.value)" >Connect</button>
+    </div>
+    <br />
+  </form>
 </div>

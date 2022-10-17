@@ -27,6 +27,16 @@ export class WalletComponent implements OnInit {
     this.provider = ethers.getDefaultProvider("goerli");
     this.wallet = new ethers.Wallet(privateKey);
     this.walletAddress = this.wallet.address;
+    localStorage.setItem('walletAddress', this.walletAddress);
+    localStorage.setItem('privateKey', privateKey);
+  }
+
+  notConnected(): boolean{
+    return localStorage.getItem('walletAddress') == null;
+  }
+
+  address(): string | null{
+    return localStorage.getItem('walletAddress');
   }
 
 }
