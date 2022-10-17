@@ -51,7 +51,7 @@ export class ContractService {
     const bytecode = contractTokenizedBallot['bytecode'];
     const network = 'goerli';
     const address = '0xdb96DE67554A7766C3b4Dc6c4AaC06eB1aeBF697';
-    const contractName = contractTokenizedBallot['deployedBytecode'];
+    const contractName = contractTokenizedBallot['contractName'];
 
     const newContract = new Contract();
 
