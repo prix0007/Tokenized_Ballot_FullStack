@@ -4,4 +4,5 @@ export interface Claim {
   amount: number;
   secret: string;
   address: string;
+  claimed: boolean;
 }
